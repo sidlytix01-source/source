@@ -1,224 +1,150 @@
-// ===== MOBILE NAVIGATION =====
-const hamburger = document.getElementById("hamburger");
-const mobileNav = document.getElementById("mobileNav");
-const mobileNavLinks = document.querySelectorAll(".mobile-nav .nav-link");
+/* =====================================================
+   SIDLYTIX - MAIN SCRIPT
+   Safe to load on every page (all lookups are guarded).
+   The contact form handler lives inline in index.html.
+   ===================================================== */
+(() => {
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  mobileNav.classList.toggle("active");
-  document.body.style.overflow = mobileNav.classList.contains("active")
-    ? "hidden"
-    : "";
-});
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
 
-mobileNavLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    mobileNav.classList.remove("active");
-    document.body.style.overflow = "";
-  });
-});
+  // ===== MOBILE NAVIGATION =====
+  const hamburger = $("#hamburger");
+  const mobileNav = $("#mobileNav");
 
-// Close mobile nav on escape
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    hamburger.classList.remove("active");
-    mobileNav.classList.remove("active");
-    document.body.style.overflow = "";
+  function setMenu(open) {
+    if (!hamburger || !mobileNav) return;
+    hamburger.classList.toggle("active", open);
+    mobileNav.classList.toggle("active", open);
+    hamburger.setAttribute("aria-expanded", String(open));
+    hamburger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    document.body.style.overflow = open ? "hidden" : "";
   }
-});
 
-// ===== HEADER SCROLL EFFECT =====
-const header = document.getElementById("header");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener("click", () =>
+      setMenu(!mobileNav.classList.contains("active")),
+    );
+    $$(".mobile-nav .nav-link").forEach((link) =>
+      link.addEventListener("click", () => setMenu(false)),
+    );
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setMenu(false);
+    });
   }
-});
 
-// ===== SMOOTH SCROLLING =====
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
+  // ===== HEADER SCROLL EFFECT + ACTIVE NAV LINK =====
+  const header = $("#header");
+
+  // Only in-page links that point at a real section (e.g. "#services")
+  const navTargets = $$(".nav-menu .nav-link")
+    .map((link) => {
+      const href = link.getAttribute("href") || "";
+      const section = href.length > 1 && href.startsWith("#") ? $(href) : null;
+      return section ? { link, section } : null;
+    })
+    .filter(Boolean);
+
+  let ticking = false;
+
+  function onScroll() {
+    if (header) header.classList.toggle("scrolled", window.scrollY > 50);
+
+    if (navTargets.length) {
+      let current = navTargets[0];
+      navTargets.forEach((item) => {
+        if (window.scrollY >= item.section.offsetTop - 200) current = item;
       });
+      navTargets.forEach((item) =>
+        item.link.classList.toggle("active", item === current),
+      );
     }
-  });
-});
+    ticking = false;
+  }
 
-// ===== ACTIVE NAV LINK ON SCROLL =====
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll(".nav-menu .nav-link");
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    },
+    { passive: true },
+  );
+  onScroll();
 
-window.addEventListener("scroll", () => {
-  let current = "";
+  // ===== FAQ ACCORDION =====
+  const faqItems = $$(".faq-item");
 
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
-    if (scrollY >= sectionTop - 200) {
-      current = section.getAttribute("id");
-    }
-  });
+  faqItems.forEach((item) => {
+    const question = $(".faq-question", item);
+    if (!question) return;
 
-  navLinks.forEach((link) => {
-    link.classList.remove("active");
-    if (link.getAttribute("href") === `#${current}`) {
-      link.classList.add("active");
-    }
-  });
-});
+    question.addEventListener("click", () => {
+      const willOpen = !item.classList.contains("active");
 
-// ===== FAQ ACCORDION =====
-const faqItems = document.querySelectorAll(".faq-item");
+      faqItems.forEach((other) => {
+        other.classList.remove("active");
+        const btn = $(".faq-question", other);
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      });
 
-faqItems.forEach((item) => {
-  const question = item.querySelector(".faq-question");
-
-  question.addEventListener("click", () => {
-    // Close other items
-    faqItems.forEach((otherItem) => {
-      if (otherItem !== item && otherItem.classList.contains("active")) {
-        otherItem.classList.remove("active");
+      if (willOpen) {
+        item.classList.add("active");
+        question.setAttribute("aria-expanded", "true");
       }
     });
-
-    // Toggle current
-    item.classList.toggle("active");
   });
-});
 
-// ===== FORM SUBMISSION =====
-const contactForm = document.getElementById("contactForm");
-
-contactForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  // Get form values
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const service = document.getElementById("service").value;
-  const message = document.getElementById("message").value;
-
-  // Here you would typically send the data to a server
-  // For now, show a success message
-  alert(
-    `Thank you, ${name}! We'll contact you at ${email} regarding your ${service} project.`,
+  // ===== SCROLL REVEAL =====
+  // The .reveal class is added here, so without JS the content stays visible.
+  const revealEls = $$(
+    ".service-card, .portfolio-card, .feature-card, .faq-item, .step-card",
   );
 
-  // Reset form
-  contactForm.reset();
-});
+  if ("IntersectionObserver" in window && !prefersReducedMotion) {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+    );
 
-// ===== FADE IN ANIMATION ON SCROLL =====
-const fadeElements = document.querySelectorAll(".fade-in");
-
-const fadeObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
+    revealEls.forEach((el) => {
+      el.classList.add("reveal");
+      revealObserver.observe(el);
     });
-  },
-  { threshold: 0.1 },
-);
+  }
 
-fadeElements.forEach((el) => fadeObserver.observe(el));
+  // ===== 3D TILT FOR SERVICE CARDS (mouse devices only) =====
+  const canHover = window.matchMedia("(hover: hover)").matches;
 
-// ===== STAT COUNTER ANIMATION =====
-const statNumbers = document.querySelectorAll(".stat-number");
+  if (canHover && !prefersReducedMotion) {
+    $$(".service-card").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const rotateX = (y - rect.height / 2) / 20;
+        const rotateY = (rect.width / 2 - x) / 20;
 
-const animateCounter = (element) => {
-  const target = parseInt(element.getAttribute("data-target"));
-  const duration = 2000; // 2 seconds
-  const startTime = performance.now();
+        card.classList.add("tilting");
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+      });
 
-  const updateCounter = (currentTime) => {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-
-    // Use ease-out-expo for natural deceleration
-    const easeOut = 1 - Math.pow(1 - progress, 3);
-    const current = Math.floor(target * easeOut);
-
-    element.textContent = current + (target === 98 ? "%" : "+");
-
-    if (progress < 1) {
-      requestAnimationFrame(updateCounter);
-    } else {
-      element.textContent = target + (target === 98 ? "%" : "+");
-    }
-  };
-
-  requestAnimationFrame(updateCounter);
-};
-
-// Intersection Observer for stat counters
-const statObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && !entry.target.classList.contains("counted")) {
-        entry.target.classList.add("counted");
-        animateCounter(entry.target);
-      }
+      card.addEventListener("mouseleave", () => {
+        card.classList.remove("tilting");
+        card.style.transform = ""; // hand control back to CSS
+      });
     });
-  },
-  { threshold: 0.5 },
-);
-
-statNumbers.forEach((stat) => statObserver.observe(stat));
-
-// ===== SCROLL ANIMATIONS =====
-const scrollAnimatedElements = document.querySelectorAll(
-  ".service-card, .portfolio-card, .feature-card, .testimonial-card, .faq-item, .step-card",
-);
-
-const scrollAnimationObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  },
-  {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  },
-);
-
-scrollAnimatedElements.forEach((el) => {
-  scrollAnimationObserver.observe(el);
-});
-
-// ===== 3D TILT EFFECT FOR SERVICE CARDS =====
-const serviceCards = document.querySelectorAll(".service-card");
-
-serviceCards.forEach((card) => {
-  card.addEventListener("mousemove", (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    const rotateX = (y - centerY) / 20;
-    const rotateY = (centerX - x) / 20;
-
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-  });
-
-  card.addEventListener("mouseleave", () => {
-    card.style.transform =
-      "perspective(1000px) rotateX(0) rotateY(0) translateY(0)";
-  });
-});
+  }
+})();
