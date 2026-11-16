@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>document.documentElement.classList.add("js");</script>
+
+    <title>Email Summary System for Gmail | Sidlytix</title>
+    <meta name="description" content="Get a clear summary of your important Gmail emails, delivered by email, logged in Google Sheets and shown on a live dashboard. Set up inside your own Google account by Sidlytix." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://sidlytix.com/email-summary.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sidlytix" />
+    <meta property="og:title" content="Email Summary System for Gmail | Sidlytix" />
+    <meta property="og:description" content="Your inbox, summarised: by email, in Google Sheets and on a live dashboard." />
+    <meta property="og:url" content="https://sidlytix.com/email-summary.html" />
+    <meta property="og:image" content="https://sidlytix.com/og/og-email-summary.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Email Summary System for Gmail | Sidlytix" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Email Summary System for Gmail | Sidlytix" />
+    <meta name="twitter:description" content="Your inbox, summarised: by email, in Google Sheets and on a live dashboard." />
+    <meta name="twitter:image" content="https://sidlytix.com/og/og-email-summary.jpg" />
+
+    <meta name="theme-color" content="#0b1628" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <link rel="preload" href="fonts/dm-sans-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="fonts/playfair-display-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /></noscript>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Email Summary System",
+        "serviceType": "Email automation for Gmail",
+        "description": "Automated summaries of important Gmail emails, delivered by email, logged in Google Sheets and visualised on a dashboard. Set up per client inside their own Google account.",
+        "areaServed": "Worldwide",
+        "provider": { "@type": "Organization", "name": "Sidlytix", "url": "https://sidlytix.com" }
+      }
+    </script>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <!--@HEADER-->
+
+    <main id="main">
+      <!-- ===== PRODUCT HERO ===== -->
+      <section class="page-hero">
+        <div class="page-hero-container">
+          <div class="page-hero-content">
+            <nav class="breadcrumb fade-in fade-in-delay-1" aria-label="Breadcrumb">
+              <a href="index.html">Home</a> <span aria-hidden="true">/</span>
+              <a href="index.html#products">Products</a> <span aria-hidden="true">/</span>
+              <span aria-current="page">Email Summary System</span>
+            </nav>
+            <span class="product-label fade-in fade-in-delay-1"><i class="fas fa-box-open" aria-hidden="true"></i> Gmail · Google Sheets · Dashboard</span>
+            <h1 class="hero-title fade-in fade-in-delay-2">Email Summary System: Your Inbox, <span>summarised.</span></h1>
+            <p class="hero-description fade-in fade-in-delay-3">
+              Stop digging through hundreds of emails. Get a clear summary of the emails that matter,
+              delivered to your inbox, logged in Google Sheets and visualised on a live dashboard.
+            </p>
+            <div class="hero-buttons fade-in fade-in-delay-4">
+              <a href="index.html?interest=email-summary#contact" class="btn-primary">Request Setup</a>
+              <a href="https://wa.me/919813505607?text=Hi%20Sidlytix%2C%20I%27m%20interested%20in%20the%20Email%20Summary%20System." class="btn-secondary" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i> Ask on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="pipeline-wrap fade-in fade-in-delay-3" aria-hidden="true">
+            <div class="pipeline">
+              <div class="pipe-step">
+                <span class="pipe-icon"><i class="fas fa-inbox"></i></span>
+                <span class="pipe-text"><strong>Your Gmail</strong><span>The emails you choose</span></span>
+              </div>
+              <div class="pipe-step">
+                <span class="pipe-icon"><i class="fas fa-gears"></i></span>
+                <span class="pipe-text"><strong>Apps Script</strong><span>Runs automatically on schedule</span></span>
+              </div>
+              <div class="pipe-step">
+                <span class="pipe-icon"><i class="fas fa-table"></i></span>
+                <span class="pipe-text"><strong>Google Sheets</strong><span>Every summary logged</span></span>
+              </div>
+              <div class="pipe-step pipe-step--final">
+                <span class="pipe-icon"><i class="fas fa-chart-pie"></i></span>
+                <span class="pipe-text"><strong>Email + Dashboard</strong><span>Clear insights, delivered</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PROBLEM ===== -->
+      <section class="section services-section">
+        <div class="section-header">
+          <span class="section-subtitle">Sound Familiar?</span>
+          <h2 class="section-title">Your Inbox Is Costing You Time</h2>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
+            <h3 class="feature-title">Important emails get buried</h3>
+            <p class="feature-description">Client requests, orders and enquiries get lost under newsletters and notifications.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-hourglass-half" aria-hidden="true"></i></div>
+            <h3 class="feature-title">Hours lost every week</h3>
+            <p class="feature-description">Reading every email one by one to find what matters takes time you don't have.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-eye-slash" aria-hidden="true"></i></div>
+            <h3 class="feature-title">No overview for managers</h3>
+            <p class="feature-description">There's no simple way to see what's coming in, from whom, and how it's changing.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== HOW IT WORKS ===== -->
+      <section class="section how-it-works-section">
+        <div class="section-header">
+          <span class="section-subtitle">How It Works</span>
+          <h2 class="section-title">Four Simple Steps</h2>
+        </div>
+        <div class="steps-grid steps-grid--4">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-icon"><i class="fab fa-google" aria-hidden="true"></i></div>
+            <h3 class="step-title">Connect Gmail</h3>
+            <p class="step-description">We set the system up inside your own Google account.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-icon"><i class="fas fa-filter" aria-hidden="true"></i></div>
+            <h3 class="step-title">Pick What Matters</h3>
+            <p class="step-description">We agree which emails to include, by label, sender or keyword.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-icon"><i class="fas fa-gears" aria-hidden="true"></i></div>
+            <h3 class="step-title">Runs Automatically</h3>
+            <p class="step-description">Google Apps Script reads and summarises your emails on schedule.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">04</div>
+            <div class="step-icon"><i class="fas fa-paper-plane" aria-hidden="true"></i></div>
+            <h3 class="step-title">Delivered to You</h3>
+            <p class="step-description">By email, in Google Sheets and on a live dashboard.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== DELIVERY ===== -->
+      <section class="section services-section">
+        <div class="section-header">
+          <span class="section-subtitle">What You Get</span>
+          <h2 class="section-title">Delivered Three Ways</h2>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-envelope-open-text" aria-hidden="true"></i></div>
+            <h3 class="service-title">Email Digest</h3>
+            <p class="service-description">A clear summary lands in your inbox on the schedule you choose, so you see what matters at a glance.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-table" aria-hidden="true"></i></div>
+            <h3 class="service-title">Google Sheets Log</h3>
+            <p class="service-description">Every summary is saved to a Google Sheet you own, giving you a searchable history.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-chart-pie" aria-hidden="true"></i></div>
+            <h3 class="service-title">Live Dashboard</h3>
+            <p class="service-description">A dashboard shows email volume, key senders and trends over time for you and your managers.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FEATURES + AUDIENCE ===== -->
+      <section class="section">
+        <div class="split-grid">
+          <div>
+            <span class="section-subtitle">Features</span>
+            <h2 class="section-title section-title--left">Simple, Reliable, Yours</h2>
+            <!-- CHECK: remove any feature your current build doesn't do yet -->
+            <ul class="check-list">
+              <li><i class="fas fa-check" aria-hidden="true"></i> Runs automatically on a schedule</li>
+              <li><i class="fas fa-check" aria-hidden="true"></i> Focus on the emails you choose</li>
+              <li><i class="fas fa-check" aria-hidden="true"></i> No new software: works inside Google</li>
+              <li><i class="fas fa-check" aria-hidden="true"></i> Searchable history in Google Sheets</li>
+              <li><i class="fas fa-check" aria-hidden="true"></i> Dashboard for owners and managers</li>
+              <li><i class="fas fa-check" aria-hidden="true"></i> Set up, trained and supported by us</li>
+            </ul>
+          </div>
+          <div>
+            <span class="section-subtitle">Who It's For</span>
+            <h2 class="section-title section-title--left">Any Team With a Busy Inbox</h2>
+            <ul class="chip-list chip-list--wrap">
+              <li class="chip">Business owners</li>
+              <li class="chip">Customer support teams</li>
+              <li class="chip">Sales teams</li>
+              <li class="chip">CA &amp; accounting firms</li>
+              <li class="chip">Clinics &amp; healthcare</li>
+              <li class="chip">Retail &amp; wholesale</li>
+              <li class="chip">Schools &amp; institutes</li>
+              <li class="chip">Agencies &amp; consultants</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PRIVACY ===== -->
+      <section class="section services-section">
+        <div class="privacy-box">
+          <div class="privacy-icon"><i class="fas fa-lock" aria-hidden="true"></i></div>
+          <div>
+            <h2 class="privacy-title">Your emails stay in your Google account</h2>
+            <!-- CHECK: keep only statements that are true for your setup.
+                 If summaries are created with an external AI service (e.g. Gemini or OpenAI API),
+                 add a line saying which service and what is sent to it. -->
+            <ul class="check-list check-list--single">
+              <li><i class="fas fa-check" aria-hidden="true"></i> The system is installed inside your own Google account using Google Apps Script.</li>
+              <li><i class="fas fa-check" aria-hidden="true"></i> Summaries are saved to a Google Sheet that you own and control.</li>
+              <li><i class="fas fa-check" aria-hidden="true"></i> We don't keep copies of your emails on our own servers.</li>
+              <li><i class="fas fa-check" aria-hidden="true"></i> You can remove its access at any time from your Google Account security settings.</li>
+            </ul>
+            <p class="privacy-more">Read our <a href="privacy-policy.html">Privacy Policy</a> for full details.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SETUP PROCESS ===== -->
+      <section class="section how-it-works-section">
+        <div class="section-header">
+          <span class="section-subtitle">Getting Started</span>
+          <h2 class="section-title">From Call to Live</h2>
+        </div>
+        <div class="steps-grid steps-grid--4">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-icon"><i class="fas fa-video" aria-hidden="true"></i></div>
+            <h3 class="step-title">Free Call</h3>
+            <p class="step-description">We understand your inbox and what you need summarised.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-icon"><i class="fas fa-screwdriver-wrench" aria-hidden="true"></i></div>
+            <h3 class="step-title">Setup</h3>
+            <p class="step-description">We configure the system in your Google account.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-icon"><i class="fas fa-chalkboard-user" aria-hidden="true"></i></div>
+            <h3 class="step-title">Training</h3>
+            <p class="step-description">We walk your team through the summary, sheet and dashboard.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">04</div>
+            <div class="step-icon"><i class="fas fa-headset" aria-hidden="true"></i></div>
+            <h3 class="step-title">Support</h3>
+            <p class="step-description">We're available for changes and questions after launch.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FAQ ===== -->
+      <section class="section faq-section">
+        <div class="section-header">
+          <span class="section-subtitle">FAQ</span>
+          <h2 class="section-title">Questions About the Email Summary System</h2>
+        </div>
+        <div class="faq-container">
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="pfaq-a1" id="pfaq-q1">
+              <span>Does it work with Outlook?</span><i class="fas fa-plus faq-icon" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer" id="pfaq-a1" role="region" aria-labelledby="pfaq-q1">
+              <p>Right now it works with Gmail and Google Workspace accounts.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="pfaq-a2" id="pfaq-q2">
+              <span>Do I need to install any software?</span><i class="fas fa-plus faq-icon" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer" id="pfaq-a2" role="region" aria-labelledby="pfaq-q2">
+              <p>No. It runs on Google Apps Script inside your Google account, so there's nothing to download or install.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="pfaq-a3" id="pfaq-q3">
+              <span>Can I choose which emails are summarised?</span><i class="fas fa-plus faq-icon" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer" id="pfaq-a3" role="region" aria-labelledby="pfaq-q3">
+              <p>Yes. During setup we agree which emails to include, for example specific labels, senders or keywords.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="pfaq-a4" id="pfaq-q4">
+              <span>Can it be customised for my business?</span><i class="fas fa-plus faq-icon" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer" id="pfaq-a4" role="region" aria-labelledby="pfaq-q4">
+              <p>Yes. The summary format, schedule and dashboard are set up around how your team works.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="pfaq-a5" id="pfaq-q5">
+              <span>How much does it cost?</span><i class="fas fa-plus faq-icon" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer" id="pfaq-a5" role="region" aria-labelledby="pfaq-q5">
+              <p>Pricing depends on your setup. Request a free consultation and we'll send you a clear quote.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CTA ===== -->
+      <section class="section">
+        <div class="cta-band">
+          <h2 class="section-title">Ready to Take Back Your Inbox?</h2>
+          <p class="section-description">Tell us about your inbox and we'll show you how the system can work for you.</p>
+          <div class="hero-buttons cta-buttons">
+            <a href="index.html?interest=email-summary#contact" class="btn-primary">Request Setup</a>
+            <a href="https://wa.me/919813505607?text=Hi%20Sidlytix%2C%20I%27m%20interested%20in%20the%20Email%20Summary%20System." class="btn-secondary" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i> Ask on WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!--@FOOTER-->
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

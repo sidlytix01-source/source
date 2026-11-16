@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.sidlytix.com/sitemap.xml
+Sitemap: https://sidlytix.com/sitemap.xml
