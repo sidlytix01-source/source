@@ -20,10 +20,15 @@
 
   // Pre-select from URL: ?interest=email-summary and/or ?industry=healthcare
   const params = new URLSearchParams(location.search);
-  [["interest", "#interest"], ["industry", "#industry"]].forEach(([param, sel]) => {
+  [
+    ["interest", "#interest"],
+    ["industry", "#industry"],
+  ].forEach(([param, sel]) => {
     const key = params.get(param);
     if (!key) return;
-    const opt = form.querySelector(`${sel} option[data-key="${CSS.escape(key)}"]`);
+    const opt = form.querySelector(
+      `${sel} option[data-key="${CSS.escape(key)}"]`,
+    );
     if (opt) opt.selected = true;
   });
 
@@ -48,7 +53,8 @@
 
     const elapsed = Date.now() - loadedAt;
     // Real people need a few seconds; bots don't. Wait out the gap instead of failing a fast human.
-    if (elapsed < MIN_FILL_MS) await new Promise((r) => setTimeout(r, MIN_FILL_MS - elapsed));
+    if (elapsed < MIN_FILL_MS)
+      await new Promise((r) => setTimeout(r, MIN_FILL_MS - elapsed));
 
     button.textContent = "Sending...";
     button.disabled = true;
@@ -98,12 +104,14 @@
 
   function showSuccess() {
     statusEl.classList.add("is-ok");
-    statusEl.textContent = "Thanks, message received. We'll reply within 24 hours.";
+    statusEl.textContent =
+      "Thanks, message received. We'll reply within 24 hours.";
 
     const popup = document.createElement("div");
     popup.className = "success-popup";
     popup.setAttribute("aria-hidden", "true"); // the status line above is what screen readers hear
-    popup.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Thanks, message received.';
+    popup.innerHTML =
+      '<i class="fas fa-check" aria-hidden="true"></i> Thanks, message received.';
     document.body.appendChild(popup);
     setTimeout(() => popup.remove(), 4000);
   }

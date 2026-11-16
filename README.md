@@ -36,9 +36,7 @@ python tools/convert_images.py   # creates .webp next to each .png/.jpg
 python build.py                  # pages now serve WebP with PNG fallback
 ```
 
-Tip: avoid spaces in image file names (e.g. rename
-`Financial Services Website Showcase.png` to `ca-firm-website.png`, then update
-the `src` in `src/pages/index.html`).
+Tip: avoid spaces in image file names.
 
 ## Social links
 
